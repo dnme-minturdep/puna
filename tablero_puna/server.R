@@ -59,7 +59,7 @@ function(input, output, session) {
                               selected = "Todos")
         } else {
             updateSelectInput(session, inputId = "provincia", 
-                              choices = c("Todos",sort(unique(ruta()$provincia))))
+                              choices = c("Todos",sort(unique(region()$provincia))))
         }
     })
     
@@ -79,7 +79,7 @@ function(input, output, session) {
                               selected = "Todos")
         } else {
             updateSelectInput(session, inputId = "depto", 
-                              choices = c("Todos",sort(unique(ruta()$departamento_partido))))
+                              choices = c("Todos",sort(unique(provincias()$departamento_partido))))
         }
     })  
     
@@ -99,7 +99,7 @@ function(input, output, session) {
                               selected = "Todos")
         } else {
             updateSelectInput(session, inputId = "localidad", 
-                              choices = c("Todos",sort(unique(ruta()$localidad))))
+                              choices = c("Todos",sort(unique(departamentos()$localidad))))
         }
     })
     
@@ -115,11 +115,11 @@ function(input, output, session) {
     observeEvent(localidades(), {
         if (input$localidad == "Todos") {
             updateSelectInput(session, inputId = "clasificacion", 
-                              choices = c("Todos",sort(unique(serie_puna$clasificacion))),
+                              choices = c("Todos",sort(unique(serie_puna$clasificacion_mintur))),
                               selected = "Todos")
         } else {
             updateSelectInput(session, inputId = "clasificacion", 
-                              choices = c("Todos",sort(unique(ruta()$clasificacion))))
+                              choices = c("Todos",sort(unique(localidades()$clasificacion_mintur))))
         }
     })
     
@@ -139,7 +139,7 @@ function(input, output, session) {
                               selected = "Todos")
         } else {
             updateSelectInput(session, inputId = "tipo", 
-                              choices = c("Todos",sort(unique(ruta()$tipo))))
+                              choices = c("Todos",sort(unique(clasificacion()$tipo))))
         }
     })
     
