@@ -10,17 +10,10 @@ function(input, output, session) {
     })
     
     observeEvent(puna(), {
-        if (input$anio == "Todos") {
-            updateSelectInput(session, inputId = "ruta", 
-                              choices = c("Todos",sort(unique(serie_puna$ruta_natural))),
-                              selected = "Todos"
-                              )
-        } else {
-            updateSelectInput(session, inputId = "ruta", 
+        updateSelectInput(session, inputId = "ruta", 
                               choices = c("Todos",sort(unique(puna()$ruta_natural))),
                               selected = "Todos"
                               )
-        }
     })
     
     ruta <- reactive({
@@ -33,14 +26,9 @@ function(input, output, session) {
     })
     
     observeEvent(ruta(), {
-        if (input$ruta == "Todos") {
-            updateSelectInput(session, inputId = "region", 
-                              choices = c("Todos",sort(unique(serie_puna$region))),
-                              selected = "Todos")
-        } else {
-            updateSelectInput(session, inputId = "region", 
-                          choices = c("Todos",sort(unique(ruta()$region))))
-            }
+        updateSelectInput(session, inputId = "region", 
+                          choices = c("Todos",sort(unique(ruta()$region))),
+                          selected = "Todos")
     })
     
     region <- reactive({
@@ -53,14 +41,9 @@ function(input, output, session) {
     })
     
     observeEvent(region(), {
-        if (input$region == "Todos") {
-            updateSelectInput(session, inputId = "provincia", 
-                              choices = c("Todos",sort(unique(serie_puna$provincia))),
+        updateSelectInput(session, inputId = "provincia", 
+                              choices = c("Todos",sort(unique(region()$provincia))),
                               selected = "Todos")
-        } else {
-            updateSelectInput(session, inputId = "provincia", 
-                              choices = c("Todos",sort(unique(region()$provincia))))
-        }
     })
     
     provincias <- reactive({
@@ -73,14 +56,9 @@ function(input, output, session) {
     })
     
     observeEvent(provincias(), {
-        if (input$provincia == "Todos") {
-            updateSelectInput(session, inputId = "depto", 
-                              choices = c("Todos",sort(unique(serie_puna$departamento_partido))),
+        updateSelectInput(session, inputId = "depto", 
+                              choices = c("Todos",sort(unique(provincias()$departamento_partido))),
                               selected = "Todos")
-        } else {
-            updateSelectInput(session, inputId = "depto", 
-                              choices = c("Todos",sort(unique(provincias()$departamento_partido))))
-        }
     })  
     
     departamentos <- reactive({
@@ -93,14 +71,9 @@ function(input, output, session) {
     })
     
     observeEvent(departamentos(), {
-        if (input$depto == "Todos") {
-            updateSelectInput(session, inputId = "localidad", 
-                              choices = c("Todos",sort(unique(serie_puna$localidad))),
+        updateSelectInput(session, inputId = "localidad", 
+                              choices = c("Todos",sort(unique(departamentos()$localidad))),
                               selected = "Todos")
-        } else {
-            updateSelectInput(session, inputId = "localidad", 
-                              choices = c("Todos",sort(unique(departamentos()$localidad))))
-        }
     })
     
     localidades <- reactive({
@@ -113,14 +86,9 @@ function(input, output, session) {
     })
     
     observeEvent(localidades(), {
-        if (input$localidad == "Todos") {
-            updateSelectInput(session, inputId = "clasificacion", 
-                              choices = c("Todos",sort(unique(serie_puna$clasificacion_mintur))),
+        updateSelectInput(session, inputId = "clasificacion", 
+                              choices = c("Todos",sort(unique(localidades()$clasificacion_mintur))),
                               selected = "Todos")
-        } else {
-            updateSelectInput(session, inputId = "clasificacion", 
-                              choices = c("Todos",sort(unique(localidades()$clasificacion_mintur))))
-        }
     })
     
     clasificacion <- reactive({
@@ -133,14 +101,9 @@ function(input, output, session) {
     })
     
     observeEvent(clasificacion(), {
-        if (input$clasificacion == "Todos") {
-            updateSelectInput(session, inputId = "tipo", 
-                              choices = c("Todos",sort(unique(serie_puna$tipo))),
+        updateSelectInput(session, inputId = "tipo", 
+                              choices = c("Todos",sort(unique(clasificacion()$tipo))),
                               selected = "Todos")
-        } else {
-            updateSelectInput(session, inputId = "tipo", 
-                              choices = c("Todos",sort(unique(clasificacion()$tipo))))
-        }
     })
     
     tipo <- reactive({

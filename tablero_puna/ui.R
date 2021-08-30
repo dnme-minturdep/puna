@@ -1,8 +1,3 @@
-library(shiny)
-library(tidyverse)
-library(DT)
-library(shinyWidgets)
-
 navbarPage(title = div(  #### NavBar #####
                          div(
                            id = "img-id",
@@ -27,7 +22,7 @@ navbarPage(title = div(  #### NavBar #####
                              "Año:",
                              choices = c("Todos",unique(serie_puna$anio)),
                              selected = 2020, 
-                             multiple =TRUE)),
+                             multiple = TRUE)),
         
         column(3,selectInput("ruta",
                              "Ruta Natural:",
