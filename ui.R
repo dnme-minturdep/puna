@@ -1,15 +1,15 @@
 navbarPage(title = div(  #### NavBar #####
                          div(
                            id = "img-id",
-                           tags$a(img(src = "https://upload.wikimedia.org/wikipedia/commons/8/8e/Ministerio_de_Turismo_y_Deportes_arg.png",
+                           tags$a(img(src = "https://tableros.yvera.tur.ar/recursos/logo_mintur_color.png",
                                       width = 100),href="https://www.yvera.tur.ar/estadistica/",target = '_blank'
                            )),
-                         "TABLERO DE CONSULTAS PUNA", id = "title"),
+                         "TABLERO DE CONSULTAS", id = "title"),
            id="navbar",
            position = "fixed-top",
            windowTitle = "PUNA", 
            collapsible = TRUE,
-           tabPanel("SERIE",
+           tabPanel("PUNA",
                     div(class="outer",
                         tags$head(
                           # Include our custom CSS
