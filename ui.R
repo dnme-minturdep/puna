@@ -72,7 +72,7 @@ navbarPage(title = div(  #### NavBar #####
                                                                 "Localidad", 
                                                                 "Clasificación",
                                                                 "Tipo"),
-                           selected = "Provincia", multiple = TRUE)
+                           selected = "Año", multiple = TRUE)
         )),
     
     tabPanel('PUNA', DT::dataTableOutput('tabla'))

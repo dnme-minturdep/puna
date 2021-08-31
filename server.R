@@ -135,10 +135,11 @@ function(input, output, session) {
                                         "Clasificación" = clasificacion_mintur,
                                         "Tipo" = tipo) %>%
                           group_by_at(.vars = c(input$agrup)) %>%
-                          summarise("Establecimientos" = round(sum(establecimientos, na.rm = T)),
-                                    "Plazas" = round(sum(plazas, na.rm = T)),
+                          summarise("Establecimientos" = round(sum(establecimientos)),
+                                    "Unidades" = round(sum(unidades, na.rm = T)),
                                     "Habitaciones" = round(sum(habitaciones, na.rm = T)),
-                                    "Unidades" = round(sum(unidades, na.rm = T))),
+                                    "Plazas" = round(sum(plazas, na.rm = T))
+                                    ),
                       rownames= FALSE)
     )
 
