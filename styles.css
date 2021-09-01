@@ -78,7 +78,7 @@ transition-delay: 0;
 /* Add an image to navbar */
   #img-id{
     position: fixed; 
-    right: 10px;
+    right: 50px;
     top: 10px;
   }
 

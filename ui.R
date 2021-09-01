@@ -7,7 +7,7 @@ navbarPage(title = div(  #### NavBar #####
                          "TABLERO DE CONSULTAS", id = "title"),
            id="navbar",
            position = "fixed-top",
-           windowTitle = "PUNA", 
+           windowTitle = "Alojamientos - Turismo Argentina", 
            collapsible = TRUE,
            tabPanel("PUNA",
                     div(class="outer",
