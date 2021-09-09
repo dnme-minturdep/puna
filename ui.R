@@ -84,7 +84,7 @@ navbarPage(title = div(  #### NavBar #####
              br(),
              h4("   El Padrón Único Nacional de Alojamiento (PUNA) reúne todos los establecimientos de alojamiento turístico de la Argentina, 
                 en el que se detallan las principales variables de cada uno, nutrido a partir de diferentes fuentes de información."), 
-             h4("   Estas fuentes de información son: los organismos provinciales y municipales de turismo que a través de sus áreas de fiscalización de servicios turísticos 
+             h4("   Estas fuentes de información son: los organismos provinciales y municipales de turismo que a través de su área de fiscalización de servicios turísticos 
                 elabora el padrón de alojamiento de su provincia o localidad; el INDEC a través de la Encuesta de Ocupación Hotelera y fuentes secundarias especializadas en turismo relevadas desde la DNMYE - MINTURDEP."),
                 
                  br(),
