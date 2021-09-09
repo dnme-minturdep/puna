@@ -17,6 +17,10 @@ navbarPage(title = div(  #### NavBar #####
                         )),
                     br(),
                     fluidPage(
+                        
+                        h3("FILTROS"),
+                        h5("Los siguientes comandos permiten filtrar los datos."),
+                        
                       fluidRow(
         column(3,selectInput("anio",
                              "Año:",
@@ -39,6 +43,7 @@ navbarPage(title = div(  #### NavBar #####
                              choices = c("Todos",unique(serie_puna$provincia)),
                              multiple =TRUE))
     ),
+
     fluidRow(
         column(3,selectInput("depto",
                              "Departamento/partido:",
@@ -61,7 +66,9 @@ navbarPage(title = div(  #### NavBar #####
                              multiple =TRUE))
     ),
     
-    br(),
+    h3("VISUALIZACIÓN"),
+    h5("Selecciona el nivel de apertura con que se visualizan los datos."),
+    
     fluidRow(
         column(4,
                selectInput("agrup", "Mostrar por:", choices = c("Año",
@@ -109,8 +116,8 @@ navbarPage(title = div(  #### NavBar #####
                         tags$a(href="https://www.e-unwto.org/doi/book/10.18111/9789213612385", 
                         " Organización Mundial de Turismo."),
                         ""),
-                 tags$p(tags$b(" • TIPO"),": se refiere al tipo al que pertenece la categoría del establecimiento. El MINTURDEP tiene cuatro tipos: hoteleros, parahoteleros, otros colectivos y privados."),
-                 tags$p(tags$b(" • MOSTRAR POR"),": permite elegir el grado de apertura o desagregación que se quiere utilizar.")
+                 tags$p(tags$b(" • TIPO"),": se refiere al tipo al que pertenece la categoría del establecimiento. El MINTURDEP tiene cuatro tipos: hoteleros, parahoteleros, otros colectivos y privados.")
+                 #tags$p(tags$b(" • MOSTRAR POR"),": permite elegir el grado de apertura o desagregación que se quiere utilizar.")
              )),
              
     )
