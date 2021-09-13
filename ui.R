@@ -116,8 +116,11 @@ navbarPage(title = div(  #### NavBar #####
                         tags$a(href="https://www.e-unwto.org/doi/book/10.18111/9789213612385", 
                         " Organización Mundial de Turismo."),
                         ""),
-                 tags$p(tags$b(" • TIPO"),": se refiere al tipo al que pertenece la categoría del establecimiento. El MINTURDEP tiene cuatro tipos: hoteleros, parahoteleros, otros colectivos y privados.")
-                 #tags$p(tags$b(" • MOSTRAR POR"),": permite elegir el grado de apertura o desagregación que se quiere utilizar.")
+                 tags$p(tags$b(" • TIPO"),": se refiere al tipo al que pertenece la categoría del establecimiento. El MINTURDEP tiene cuatro tipos: hoteleros, parahoteleros, otros colectivos y privados."),
+                 tags$p(tags$b(" • ESTABLECIMIENTOS"),": se refiere a la cantidad de establecimientos que conforman los distintos alojamientos turísticos."),
+                 tags$p(tags$b(" • UNIDADES"),": son los departamentos, cabañas o bungalows equipados que un establecimiento ofrece, además de otorgar algunos de los servicios de hotelería."),
+                 tags$p(tags$b(" • HABITACIONES"),": se refiere al número de habitaciones que tienen los establecimientos."),
+                 tags$p(tags$b(" • PLAZAS"),": se refiere a la cantidad de plazas que tienen los establecimientos. Una plaza equivale al espacio que ocupa una persona: por ejemplo, una cama matrimonial cuenta como dos plazas.")
              )),
              
     )
