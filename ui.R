@@ -94,6 +94,8 @@ navbarPage(title = div(  #### NavBar #####
              h4("   Estas fuentes de información son: los organismos provinciales y municipales de turismo que a través de su área de fiscalización de servicios turísticos 
                 elabora el padrón de alojamiento de su provincia o localidad; el INDEC a través de la Encuesta de Ocupación Hotelera y fuentes secundarias especializadas en turismo relevadas desde la DNMYE - MINTURDEP."),
                 
+             h4(" Los datos publicados acá, por su propia naturaleza, se encuentran en revisión continua y deben ser tomados como provisorios."),
+             
                  br(),
              br(),
              h3 ("DEFINICIONES Y CONCEPTOS"),
