@@ -117,8 +117,9 @@ function(input, output, session) {
     
     output$tabla <- DT::renderDataTable(
         server = F,
-        DT::datatable(extensions = 'Buttons', 
-                      options = list(dom = 'frtipB',
+        DT::datatable(extensions = 'Buttons',
+                      options = list(lengthMenu = c(10, 25, 50), pageLength = 10, 
+                                     dom = 'lfrtipB',
                                      buttons = list('copy', 
                                                     list(
                                                         extend = 'collection',
@@ -140,7 +141,8 @@ function(input, output, session) {
                                     "Habitaciones" = round(sum(habitaciones, na.rm = T)),
                                     "Plazas" = round(sum(plazas, na.rm = T))
                                     ),
-                      rownames= FALSE)
+                      rownames= FALSE
+                      )
     )
 
 }
