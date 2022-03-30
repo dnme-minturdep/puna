@@ -1,10 +1,10 @@
 navbarPage(title = div(  #### NavBar #####
                          div(
                            id = "img-id",
-                           tags$a(img(src = "https://tableros.yvera.tur.ar/recursos/logo_mintur_color.png",
-                                      width = 100),href="https://www.yvera.tur.ar/estadistica/",target = '_blank'
+                           tags$a(img(src = "https://tableros.yvera.tur.ar/recursos/logo_sinta.png",
+                                      width = 150),href="https://www.yvera.tur.ar/sinta/",target = '_blank'
                            )),
-                         "TABLERO DE CONSULTAS", id = "title"),
+                         "TABLERO DE CONSULTAS", id = "title", class = "navbar1"),
            id="navbar",
            position = "fixed-top",
            windowTitle = "Alojamientos - Turismo Argentina", 
