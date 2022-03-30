@@ -1,5 +1,8 @@
 function(input, output, session) {
-
+    
+    Sys.sleep(3)
+    waiter_hide()
+    
     puna <- reactive({
         req(input$anio)
         if (input$anio == "Todos") {
@@ -71,9 +74,9 @@ function(input, output, session) {
     })
     
     observeEvent(departamentos(), {
-        updateSelectInput(session, inputId = "localidad", 
+        updateSelectizeInput(session, inputId = "localidad", 
                               choices = c("Todos",sort(unique(departamentos()$localidad))),
-                              selected = "Todos")
+                              selected = "Todos", server = TRUE)
     })
     
     localidades <- reactive({

@@ -10,6 +10,10 @@ navbarPage(title = div(  #### NavBar #####
            windowTitle = "Alojamientos - Turismo Argentina", 
            collapsible = TRUE,
            tabPanel("PUNA",
+                    
+                    useWaiter(),
+                    waiter_show_on_load(html = loading_screen, color = "white"),
+                    
                     div(class="outer",
                         tags$head(
                           # Include our custom CSS
@@ -50,9 +54,9 @@ navbarPage(title = div(  #### NavBar #####
                              choices = c("Todos",unique(serie_puna$departamento_partido)),
                              multiple =TRUE)),
         
-        column(3,selectInput("localidad",
+        column(3,selectizeInput("localidad",
                              "Localidad:",
-                             choices = c("Todos",unique(serie_puna$localidad)),
+                             choices = NULL,
                              multiple =TRUE)),
         
         column(3,selectInput("clasificacion",
