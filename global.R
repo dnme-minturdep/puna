@@ -5,7 +5,7 @@ library(waiter)
 
 options(DT.options = list(language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json')))
 
-serie_puna <- read_csv("/srv/DataDNMYE/puna/serie_puna.zip") %>% 
+serie_puna <- read_csv("/srv/DataDNMYE/puna/serie_puna.csv") %>% 
   mutate(across(2:6, ~ case_when(is.na(.) ~ "Sin dato",
                                  TRUE ~ .)))
 loading_screen <- tagList(
