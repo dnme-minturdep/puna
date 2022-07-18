@@ -106,7 +106,7 @@ navbarPage(title = div(  #### NavBar #####
              br(),
              h4(tags$ul(
                  tags$p(tags$b(" • AÑO"),": esta variable representa el año al que pertenece el Padrón."),
-                 tags$p(tags$b(" • RUTA NATURAL"),": La Argentina está dividida en", tags$a(href="https://www.argentina.gob.ar/turismoydeportes/larutanatural/conoce-las-17-rutas-naturales", 
+                 tags$p(tags$b(" • RUTA NATURAL"),": La Argentina está dividida en", tags$a(href="https://larutanatural.gob.ar/", 
                                                                                             "17 rutas naturales que te invitan a conocer lugares, circuitos y experiencias en todo el país."),
                  "Debido a la naturaleza de los datos, existen registros que no tienen una Ruta Natural asignada. En estos casos figura 'Sin dato'."), 
                  tags$p(tags$b(" • REGIÓN"),":  refiere a la región geográfica MINTURDEP en la que se encuentra el establecimiento. 
@@ -127,8 +127,13 @@ navbarPage(title = div(  #### NavBar #####
                  tags$p(tags$b(" • UNIDADES"),": son los departamentos, cabañas o bungalows equipados que un establecimiento ofrece, además de otorgar algunos de los servicios de hotelería."),
                  tags$p(tags$b(" • HABITACIONES"),": se refiere al número de habitaciones que tienen los establecimientos."),
                  tags$p(tags$b(" • PLAZAS"),": se refiere a la cantidad de plazas que tienen los establecimientos. Una plaza equivale al espacio que ocupa una persona: por ejemplo, una cama matrimonial cuenta como dos plazas.")
-             )),
+             ))
              
-    )
+    ),
+    
+    br(),
+    column(tags$footer(tags$a(img(src = "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+                                  width = 50),href="https://github.com/dnme-minturdep/")), 
+           width = 1, offset = 11)
     
 )
