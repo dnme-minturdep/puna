@@ -13,12 +13,36 @@ shinyUI(
              collapsible = TRUE,
              header = includeCSS("styles.css"),
              
+             
+             tabPanel("RESUMEN",
+                      
+                    div(id="container-info",
+                        
+                        br(),
+                        h5(tags$p("El tablero del Padrón Único Nacional de Alojamiento (PUNA) presenta datos agregados sobre la oferta de alojamiento en Argentina. En la pestaña ", tags$b("TABLERO"),
+                                  "puede conocer por unidad territorial (región, provincia, etc.) y categoría de los alojamientos, indicadores de cantidad de establecimientos, plazas, unidades y habitaciones. Para más información sobre la fuente de dato diríjase a la solapa de ",tags$b("METODOLOGÍA."))),
+                        br(),
+                        
+                        fluidRow(
+                          
+                          column(width = 5, leafletOutput("mapa_arg", height = 520)
+                          ),
+                          
+                          column(width = 7, plotlyOutput("graph_clas", height = 500)
+                                 
+                          )
+                        
+                        ),
+                        br()
+                        )
+                      
+             ),
+             
              tabPanel("TABLERO",
                       useWaiter(),
                       waiter_show_on_load(html = loading_screen, color = "white"),
                       
-                      
-                      div(id="container-info",
+                    div(id="container-info",
                           fluidPage(
                             h3("FILTROS"),
                             
@@ -105,7 +129,6 @@ shinyUI(
                           h4(" Los datos publicados acá, por su propia naturaleza, se encuentran en revisión continua y deben ser tomados como provisorios."),
                           
                           br(),
-                          br(),
                           h3 ("DEFINICIONES Y CONCEPTOS"),
                           br(),
                           h4(tags$ul(
@@ -125,13 +148,18 @@ shinyUI(
                                    "y las recomendaciones de la ", 
                                    tags$a(href="https://www.e-unwto.org/doi/book/10.18111/9789213612385", 
                                           " Organización Mundial de Turismo."),
-                            tags$p(tags$b(" • TIPO"),": se refiere al tipo al que pertenece la categoría del establecimiento. El MINTURDEP tiene cuatro tipos: hoteleros, parahoteleros, otros colectivos y privados."),
+                            tags$p(tags$b(" • TIPO"),": se refiere al tipo al que pertenece la categoría del establecimiento. El MINTURDEP tiene cuatro tipos: hoteleros, parahoteleros, otros colectivos y privados.")))),
+                          
+                          br(),
+                          h3 ("INDICADORES"),
+                          br(),
+                          h4(tags$ul(
                             tags$p(tags$b(" • ESTABLECIMIENTOS"),": se refiere a la cantidad de establecimientos que conforman los distintos alojamientos turísticos."),
                             tags$p(tags$b(" • UNIDADES"),": son los departamentos, cabañas o bungalows equipados que un establecimiento ofrece, además de otorgar algunos de los servicios de hotelería."),
                             tags$p(tags$b(" • HABITACIONES"),": se refiere al número de habitaciones que tienen los establecimientos."),
                             tags$p(tags$b(" • PLAZAS"),": se refiere a la cantidad de plazas que tienen los establecimientos. Una plaza equivale al espacio que ocupa una persona: por ejemplo, una cama matrimonial cuenta como dos plazas."),
                             br()
-                          )))
+                          ))
                           
                       )),
              
