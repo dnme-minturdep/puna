@@ -1,22 +1,82 @@
 function(input, output, session) {
+
     
-    Sys.sleep(3)
-    waiter_hide()
+    ## RESUMEN
+    output$mapa_arg <- renderLeaflet({
+        
+        data <- serie_puna %>%
+            filter(anio == 2020) %>% 
+            group_by(provincia) %>% 
+            summarise(establecimientos = sum(establecimientos, na.rm = T),
+                      plazas = sum(plazas, na.rm = T)) %>% 
+            ungroup() %>% 
+            left_join(argentina, by = c("provincia"="name_iso")) %>% 
+            mutate(hexfill = colorQuantile("BuPu", n = 9,
+                                           domain = plazas)(plazas)) %>% 
+            st_as_sf()
+        
+        labs <- sprintf(
+            paste0(data$provincia, "<br>Establecimientos: ", data$establecimientos, "<br>Plazas: ", data$plazas)
+        ) %>% lapply(htmltools::HTML)
+            
+
+        
+        leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
+            addTiles(urlTemplate = "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG%3A3857@png/{z}/{x}/{-y}.png") %>%
+            addPolygons(data = data,
+                         color = ~ hexfill,
+                         label = labs,
+                        labelOptions = labelOptions(
+                            style = list("font-weight" = "bold"),
+                            textsize = "15px",
+                            direction = "auto"),
+                        fillOpacity = .8, 
+                        weight = .5)
+        
+    })
     
+    
+    ## Gráfico clasificación
+    output$graph_clas <- renderPlotly({
+        ggplotly(serie_puna %>%
+                     filter(anio == 2020) %>% 
+                     group_by(tipo, clasificacion_mintur) %>% 
+                     summarise(establecimientos = sum(establecimientos, na.rm = T)) %>% 
+                     ungroup() %>%
+                     mutate(tipo = fct_relevel(tipo, c("Hoteleros","Parahoteleros",
+                                                       "Otros colectivos")),
+                            clasificacion_mintur = fct_reorder(clasificacion_mintur, establecimientos)) %>% 
+            ggplot() +
+                geom_col(aes(clasificacion_mintur, 
+                             establecimientos, fill = tipo,
+                             text = paste("Clasificación: ", clasificacion_mintur,
+                                          "<br>Establecimientos: ", establecimientos))) +
+                labs(title = "Establecimientos según tipo y clasificación. Año 2020", 
+                     x = "", y = "", fill = "") +
+                coord_flip() +
+                scale_fill_dnmye(palette = "cualitativa") +
+                theme_minimal() +
+                theme(plot.title = element_text(family = "Roboto", hjust = -0.8)), 
+            tooltip = "text"
+            )
+    
+    })
+    
+    ## TABLERO
     puna <- reactive({
         req(input$anio)
         if (input$anio == "Todos") {
-        puna <- serie_puna    
+            puna <- serie_puna    
         } else {
-        puna <- serie_puna[serie_puna$anio %in% input$anio,  ]
+            puna <- serie_puna[serie_puna$anio %in% input$anio,  ]
         }
     })
     
     observeEvent(puna(), {
         updateSelectInput(session, inputId = "ruta", 
-                              choices = c("Todos",sort(unique(puna()$ruta_natural))),
-                              selected = "Todos"
-                              )
+                          choices = c("Todos",sort(unique(puna()$ruta_natural))),
+                          selected = "Todos"
+        )
     })
     
     ruta <- reactive({
@@ -45,8 +105,8 @@ function(input, output, session) {
     
     observeEvent(region(), {
         updateSelectInput(session, inputId = "provincia", 
-                              choices = c("Todos",sort(unique(region()$provincia))),
-                              selected = "Todos")
+                          choices = c("Todos",sort(unique(region()$provincia))),
+                          selected = "Todos")
     })
     
     provincias <- reactive({
@@ -60,8 +120,8 @@ function(input, output, session) {
     
     observeEvent(provincias(), {
         updateSelectInput(session, inputId = "depto", 
-                              choices = c("Todos",sort(unique(provincias()$departamento_partido))),
-                              selected = "Todos")
+                          choices = c("Todos",sort(unique(provincias()$departamento_partido))),
+                          selected = "Todos")
     })  
     
     departamentos <- reactive({
@@ -75,8 +135,8 @@ function(input, output, session) {
     
     observeEvent(departamentos(), {
         updateSelectizeInput(session, inputId = "localidad", 
-                              choices = c("Todos",sort(unique(departamentos()$localidad))),
-                              selected = "Todos", server = TRUE)
+                             choices = c("Todos",sort(unique(departamentos()$localidad))),
+                             selected = "Todos", server = TRUE)
     })
     
     localidades <- reactive({
@@ -90,8 +150,8 @@ function(input, output, session) {
     
     observeEvent(localidades(), {
         updateSelectInput(session, inputId = "clasificacion", 
-                              choices = c("Todos",sort(unique(localidades()$clasificacion_mintur))),
-                              selected = "Todos")
+                          choices = c("Todos",sort(unique(localidades()$clasificacion_mintur))),
+                          selected = "Todos")
     })
     
     clasificacion <- reactive({
@@ -105,8 +165,8 @@ function(input, output, session) {
     
     observeEvent(clasificacion(), {
         updateSelectInput(session, inputId = "tipo", 
-                              choices = c("Todos",sort(unique(clasificacion()$tipo))),
-                              selected = "Todos")
+                          choices = c("Todos",sort(unique(clasificacion()$tipo))),
+                          selected = "Todos")
     })
     
     tipo <- reactive({
@@ -143,9 +203,11 @@ function(input, output, session) {
                                     "Unidades" = round(sum(unidades, na.rm = T)),
                                     "Habitaciones" = round(sum(habitaciones, na.rm = T)),
                                     "Plazas" = round(sum(plazas, na.rm = T))
-                                    ),
+                          ),
                       rownames= FALSE
-                      )
+        )
     )
-
+    
+    waiter_hide()
+    
 }
