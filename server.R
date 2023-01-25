@@ -54,7 +54,7 @@ function(input, output, session) {
                 labs(title = "Establecimientos según tipo y clasificación. Año 2020", 
                      x = "", y = "", fill = "") +
                 coord_flip() +
-                scale_fill_dnmye(palette = "cualitativa") +
+                # scale_fill_dnmye(palette = "cualitativa") +
                 theme_minimal() +
                 theme(plot.title = element_text(family = "Roboto", hjust = -0.8)), 
             tooltip = "text"

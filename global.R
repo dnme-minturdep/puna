@@ -4,7 +4,7 @@ library(DT)
 library(waiter)
 library(arrow)
 library(geoAr)
-library(comunicacion)
+# library(comunicacion)
 library(herramientas)
 library(leaflet)
 library(sf)
@@ -22,8 +22,7 @@ serie_puna <- read_parquet("/srv/DataDNMYE/puna/serie_puna.parquet") %>%
                                provincia == "Rio Negro" ~ "Río Negro",
                                TRUE ~ provincia))
 
-argentina <- get_geo("ARGENTINA", "provincia") %>% 
-  add_geo_codes() 
+# argentina <- read_sf("/srv/DataDNMYE/capas_sig/")
   
 loading_screen <- tagList(
   h3("Cargando...", style = "color:gray;"),
