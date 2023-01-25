@@ -25,8 +25,8 @@ shinyUI(
                         
                         fluidRow(
                           
-                          # column(width = 5, leafletOutput("mapa_arg", height = 520)
-                          # ),
+                          column(width = 5, leafletOutput("mapa_arg", height = 520)
+                          ),
                           
                           column(width = 7, plotlyOutput("graph_clas", height = 500)
                                  

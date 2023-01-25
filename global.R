@@ -22,7 +22,7 @@ serie_puna <- read_parquet("/srv/DataDNMYE/puna/serie_puna.parquet") %>%
                                provincia == "Rio Negro" ~ "Río Negro",
                                TRUE ~ provincia))
 
-# argentina <- read_sf("/srv/DataDNMYE/capas_sig/")
+argentina <- read_sf("/srv/DataDNMYE/capas_sig/argentina.geojson")
   
 loading_screen <- tagList(
   h3("Cargando...", style = "color:gray;"),
