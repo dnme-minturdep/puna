@@ -5,7 +5,7 @@ function(input, output, session) {
     output$mapa_arg <- renderLeaflet({
         
         data <- serie_puna %>%
-            filter(anio == 2020) %>% 
+            filter(anio == max(anio)) %>% 
             group_by(provincia) %>% 
             summarise(establecimientos = sum(establecimientos, na.rm = T),
                       plazas = sum(plazas, na.rm = T)) %>% 
@@ -51,7 +51,7 @@ function(input, output, session) {
                              establecimientos, fill = tipo,
                              text = paste("Clasificación: ", clasificacion_mintur,
                                           "<br>Establecimientos: ", establecimientos))) +
-                labs(title = "Establecimientos según tipo y clasificación. Año 2020", 
+                labs(title = "Establecimientos según tipo y clasificación", 
                      x = "", y = "", fill = "") +
                 coord_flip() +
                 # scale_fill_dnmye(palette = "cualitativa") +

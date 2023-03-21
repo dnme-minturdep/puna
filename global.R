@@ -12,17 +12,10 @@ library(plotly)
 
 options(DT.options = list(language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json')))
 
-serie_puna <- read_parquet("/srv/DataDNMYE/puna/serie_puna.parquet") %>% 
-  mutate(provincia = case_when(provincia == "Tierra del Fuego, Antartida E Islas Del Atlantico Sur" ~ "Tierra del Fuego",
-                               provincia == "Cordoba" ~ "Córdoba",
-                               provincia == "Neuquen" ~ "Neuquén",
-                               provincia == "Tucuman" ~ "Tucumán",
-                               provincia == "Entre Rios" ~ "Entre Ríos",
-                               provincia == "Ciudad Autonoma de Buenos Aires" ~ "Ciudad Autónoma de Buenos Aires",
-                               provincia == "Rio Negro" ~ "Río Negro",
-                               TRUE ~ provincia))
+serie_puna <- read_parquet("/srv/DataDNMYE/puna/serie_puna.parquet")
 
-argentina <- read_sf("/srv/DataDNMYE/capas_sig/argentina.geojson")
+argentina <- read_sf("/srv/DataDNMYE/capas_sig/argentina.geojson") %>% 
+  mutate(name_iso = str_replace(name_iso, "Tierra del Fuego", "Tierra del Fuego, Antártida e Islas del Atlántico Sur"))
   
 loading_screen <- tagList(
   h3("Cargando...", style = "color:gray;"),

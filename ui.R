@@ -52,7 +52,7 @@ shinyUI(
                               column(3,selectInput("anio",
                                                    "Año:",
                                                    choices = c("Todos",unique(serie_puna$anio)),
-                                                   selected = 2020, 
+                                                   selected = max(serie_puna$anio), 
                                                    multiple = TRUE)),
                               
                               column(3,selectInput("ruta",
