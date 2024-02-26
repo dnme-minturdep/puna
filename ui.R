@@ -25,7 +25,9 @@ shinyUI(
                         
                         fluidRow(
                           
-                          column(width = 5, leafletOutput("mapa_arg", height = 520)
+                          column(width = 5, 
+                                 h4("Plazas por provincia - año 2022"),
+                                 leafletOutput("mapa_arg", height = 520)
                           ),
                           
                           column(width = 7, plotlyOutput("graph_clas", height = 500)
@@ -109,8 +111,9 @@ shinyUI(
                                                  selected = "Año", multiple = TRUE)
                               )),
                             
-                            DT::dataTableOutput('tabla'),
-                            
+                            dataTableOutput('tabla'),
+                            fluidRow(downloadButton("downloadExcel","Descargar en excel"),
+                                     downloadButton("downloadCSV","Descargar en csv")),
                             br()
                           ))
              ),

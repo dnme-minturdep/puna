@@ -22,7 +22,8 @@ function(input, output, session) {
 
         
         leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
-            addTiles(urlTemplate = "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG%3A3857@png/{z}/{x}/{-y}.png") %>%
+            addTiles(urlTemplate = "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG%3A3857@png/{z}/{x}/{-y}.png",
+                     attribution = "IGN") %>%
             addPolygons(data = data,
                          color = ~ hexfill,
                          label = labs,
@@ -51,7 +52,7 @@ function(input, output, session) {
                              establecimientos, fill = tipo,
                              text = paste("Clasificación: ", clasificacion_mintur,
                                           "<br>Establecimientos: ", establecimientos))) +
-                labs(title = "Establecimientos según tipo y clasificación", 
+                labs(title = "Establecimientos según tipo y clasificación - año 2022", 
                      x = "", y = "", fill = "") +
                 coord_flip() +
                 # scale_fill_dnmye(palette = "cualitativa") +
@@ -178,36 +179,68 @@ function(input, output, session) {
         }
     })
     
+    
+    data_final <- reactive({
+        
+        tipo() %>% rename("Año" = anio,
+                          "Ruta natural" = ruta_natural,
+                          "Región" = region,
+                          "Provincia" = provincia,
+                          "Departamento/partido" = departamento_partido,
+                          "Localidad" = localidad,
+                          "Clasificación" = clasificacion_mintur,
+                          "Tipo" = tipo) %>%
+            group_by_at(.vars = c("Año", input$agrup)) %>%
+            summarise("Establecimientos" = round(sum(establecimientos)),
+                      "Unidades" = round(sum(unidades, na.rm = T)),
+                      "Habitaciones" = round(sum(habitaciones, na.rm = T)),
+                      "Plazas" = round(sum(plazas, na.rm = T))
+            ) %>% 
+            ungroup()
+    })
+    
     output$tabla <- DT::renderDataTable(
         server = F,
-        DT::datatable(extensions = 'Buttons',
+        datatable(#extensions = 'Buttons',
                       options = list(lengthMenu = c(10, 25, 50), pageLength = 10, 
-                                     dom = 'lfrtipB',
-                                     buttons = list('copy', 
-                                                    list(
-                                                        extend = 'collection',
-                                                        buttons = list(list(extend = 'csv', filename = "puna"),
-                                                                       list(extend = 'excel', filename = "puna")),
-                                                        text = 'Download'
-                                                    ))),
-                      tipo() %>% rename("Año" = anio,
-                                        "Ruta natural" = ruta_natural,
-                                        "Región" = region,
-                                        "Provincia" = provincia,
-                                        "Departamento/partido" = departamento_partido,
-                                        "Localidad" = localidad,
-                                        "Clasificación" = clasificacion_mintur,
-                                        "Tipo" = tipo) %>%
-                          group_by_at(.vars = c("Año", input$agrup)) %>%
-                          summarise("Establecimientos" = round(sum(establecimientos)),
-                                    "Unidades" = round(sum(unidades, na.rm = T)),
-                                    "Habitaciones" = round(sum(habitaciones, na.rm = T)),
-                                    "Plazas" = round(sum(plazas, na.rm = T))
-                          ),
+                                     dom = 'lfrtipB'
+                                     # buttons = list('copy', 
+                                     #                list(
+                                     #                    extend = 'collection',
+                                     #                    buttons = list(list(extend = 'csv', filename = "puna"),
+                                     #                                   list(extend = 'excel', filename = "puna")),
+                                     #                    text = 'Download'
+                                     #                ))
+                                     ),
+                      data_final(),
                       rownames= FALSE
-        )
+        ) %>% 
+            formatRound(columns = c(
+                "Establecimientos",
+                "Plazas",
+                "Habitaciones",
+                "Unidades"),
+                mark = ".",
+                digits = 0)
     )
     
     waiter_hide()
     
+    output$downloadExcel <- downloadHandler(
+        filename = function() {
+            "puna.xlsx"
+        },
+        content = function(file) {
+            writexl::write_xlsx(data_final(), file)
+        }
+    )
+    
+    output$downloadCSV <- downloadHandler(
+        filename = function() {
+            "puna.csv"
+        },
+        content = function(file) {
+            write_csv(data_final(), file)
+        }
+    )
 }
