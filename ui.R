@@ -13,8 +13,9 @@ shinyUI(
              collapsible = TRUE,
              header = includeCSS("styles.css"),
              
-             
              tabPanel("RESUMEN",
+                      
+                      tags$head(includeHTML("/srv/DataDNMYE/login_shiny/puna.html")),
                       
                     div(id="container-info",
                         
