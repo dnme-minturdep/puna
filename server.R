@@ -52,7 +52,7 @@ function(input, output, session) {
                              establecimientos, fill = tipo,
                              text = paste("Clasificación: ", clasificacion_mintur,
                                           "<br>Establecimientos: ", establecimientos))) +
-                labs(title = "Establecimientos según tipo y clasificación - año 2022", 
+                labs(title = "Establecimientos según tipo y clasificación - año 2023", 
                      x = "", y = "", fill = "") +
                 coord_flip() +
                 # scale_fill_dnmye(palette = "cualitativa") +

@@ -27,7 +27,7 @@ shinyUI(
                         fluidRow(
                           
                           column(width = 5, 
-                                 h4("Plazas por provincia - año 2022"),
+                                 h4("Plazas por provincia - año 2023"),
                                  leafletOutput("mapa_arg", height = 520)
                           ),
                           
