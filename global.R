@@ -19,5 +19,5 @@ argentina <- read_sf("/srv/DataDNMYE/capas_sig/argentina.geojson") %>%
   
 loading_screen <- tagList(
   h3("Cargando...", style = "color:gray;"),
-  img(src = "https://tableros.yvera.tur.ar/recursos/logo_mintur_color.png", height = "200px")
+  img(src = "https://tableros.yvera.tur.ar/recursos/logo_color.png", height = "250px")
 )
