@@ -59,7 +59,7 @@ shinyUI(
                                                    multiple = TRUE)),
                               
                               column(3,selectInput("ruta",
-                                                   "Ruta Natural:",
+                                                   "Región Natural:",
                                                    choices = c("Todos",unique(serie_puna$ruta_natural)),
                                                    multiple =TRUE)),
                               
@@ -102,7 +102,7 @@ shinyUI(
                             fluidRow(
                               column(4,
                                      selectInput("agrup", "Mostrar por:", choices = c("Año",
-                                                                                      "Ruta natural",
+                                                                                      "Región natural",
                                                                                       "Región",
                                                                                       "Provincia",
                                                                                       "Departamento/partido",
@@ -137,10 +137,9 @@ shinyUI(
                           br(),
                           h4(tags$ul(
                             tags$p(tags$b(" • AÑO"),": esta variable representa el año al que pertenece el Padrón."),
-                            tags$p(tags$b(" • RUTA NATURAL"),": La Argentina está dividida en", tags$a(href="https://larutanatural.gob.ar/", 
-                                                                                                       "17 rutas naturales que te invitan a conocer lugares, circuitos y experiencias en todo el país."),
+                            tags$p(tags$b(" • REGIÓN NATURAL"),": La Argentina está dividida en 17 regiones naturales que te invitan a conocer lugares, circuitos y experiencias en todo el país.",
                                    "Debido a la naturaleza de los datos, existen registros que no tienen una Ruta Natural asignada. En estos casos figura 'Sin dato'."), 
-                            tags$p(tags$b(" • REGIÓN"),":  refiere a la región geográfica MINTURDEP en la que se encuentra el establecimiento. 
+                            tags$p(tags$b(" • REGIÓN"),":  refiere a la región turística en la que se encuentra el establecimiento. 
                         El país está dividido en 7 regiones: Buenos Aires, Córdoba, CABA, Cuyo, Litoral, Norte y Patagonia."),  
                             tags$p(tags$b(" • PROVINCIA"),": provincia donde se encuentra el establecimiento."),  
                             tags$p(tags$b(" • DEPARTAMENTO / PARTIDO"),": ubicación del establecimiento dentro de la provincia teniendo en cuenta la división política

@@ -183,7 +183,7 @@ function(input, output, session) {
     data_final <- reactive({
         
         tipo() %>% rename("Año" = anio,
-                          "Ruta natural" = ruta_natural,
+                          "Región natural" = ruta_natural,
                           "Región" = region,
                           "Provincia" = provincia,
                           "Departamento/partido" = departamento_partido,
