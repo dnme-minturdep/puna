@@ -31,7 +31,9 @@ shinyUI(
                                  leafletOutput("mapa_arg", height = 520)
                           ),
                           
-                          column(width = 7, plotlyOutput("graph_clas", height = 500)
+                          column(width = 7, 
+                                 h4(glue::glue("Establecimientos según tipo y clasificación - año {anio_ult} (dato provisorio)")),
+                                 plotlyOutput("graph_clas", height = 520)
                                  
                           )
                         

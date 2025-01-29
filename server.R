@@ -52,7 +52,7 @@ function(input, output, session) {
                              establecimientos, fill = tipo,
                              text = paste("Clasificación: ", clasificacion_mintur,
                                           "<br>Establecimientos: ", establecimientos))) +
-                labs(title = glue::glue("Establecimientos según tipo y clasificación - año {anio_ult} (dato provisorio)"), 
+                labs(#title = glue::glue("Establecimientos según tipo y clasificación - año {anio_ult} (dato provisorio)"), 
                      x = "", y = "", fill = "") +
                 coord_flip() +
                 # scale_fill_dnmye(palette = "cualitativa") +
