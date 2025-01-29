@@ -14,6 +14,8 @@ options(DT.options = list(language = list(url = '//cdn.datatables.net/plug-ins/1
 
 serie_puna <- read_parquet("/srv/DataDNMYE/puna/serie_puna.parquet")
 
+anio_ult <- max(serie_puna$anio)
+
 argentina <- read_sf("/srv/DataDNMYE/capas_sig/argentina.geojson") %>% 
   mutate(name_iso = str_replace(name_iso, "Tierra del Fuego", "Tierra del Fuego, Antártida e Islas del Atlántico Sur"))
   

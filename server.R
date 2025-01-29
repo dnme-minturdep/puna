@@ -5,7 +5,7 @@ function(input, output, session) {
     output$mapa_arg <- renderLeaflet({
         
         data <- serie_puna %>%
-            filter(anio == max(anio)) %>% 
+            filter(anio == anio_ult) %>% 
             group_by(provincia) %>% 
             summarise(establecimientos = sum(establecimientos, na.rm = T),
                       plazas = sum(plazas, na.rm = T)) %>% 
@@ -40,7 +40,7 @@ function(input, output, session) {
     ## Gráfico clasificación
     output$graph_clas <- renderPlotly({
         ggplotly(serie_puna %>%
-                     filter(anio == 2020) %>% 
+                     filter(anio == anio_ult) %>% 
                      group_by(tipo, clasificacion_mintur) %>% 
                      summarise(establecimientos = sum(establecimientos, na.rm = T)) %>% 
                      ungroup() %>%
@@ -52,7 +52,7 @@ function(input, output, session) {
                              establecimientos, fill = tipo,
                              text = paste("Clasificación: ", clasificacion_mintur,
                                           "<br>Establecimientos: ", establecimientos))) +
-                labs(title = "Establecimientos según tipo y clasificación - año 2023", 
+                labs(title = glue::glue("Establecimientos según tipo y clasificación - año {anio_ult} (dato provisorio)"), 
                      x = "", y = "", fill = "") +
                 coord_flip() +
                 # scale_fill_dnmye(palette = "cualitativa") +

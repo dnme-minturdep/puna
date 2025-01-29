@@ -27,7 +27,7 @@ shinyUI(
                         fluidRow(
                           
                           column(width = 5, 
-                                 h4("Plazas por provincia - año 2023"),
+                                 h4(glue::glue("Plazas por provincia - año {anio_ult} (dato provisorio)")),
                                  leafletOutput("mapa_arg", height = 520)
                           ),
                           
@@ -112,6 +112,8 @@ shinyUI(
                                                  selected = "Año", multiple = TRUE)
                               )),
                             
+                            h5("Aclaración: los datos del año 2024 son de carácter provisorio"),
+                            br(),
                             dataTableOutput('tabla'),
                             fluidRow(downloadButton("downloadExcel","Descargar en excel"),
                                      downloadButton("downloadCSV","Descargar en csv")),
@@ -138,7 +140,7 @@ shinyUI(
                           h4(tags$ul(
                             tags$p(tags$b(" • AÑO"),": esta variable representa el año al que pertenece el Padrón."),
                             tags$p(tags$b(" • REGIÓN NATURAL"),": La Argentina está dividida en 17 regiones naturales que te invitan a conocer lugares, circuitos y experiencias en todo el país.",
-                                   "Debido a la naturaleza de los datos, existen registros que no tienen una Ruta Natural asignada. En estos casos figura 'Sin dato'."), 
+                                   "Debido a la naturaleza de los datos, existen registros que no tienen una región natural asignada. En estos casos figura 'Sin dato'."), 
                             tags$p(tags$b(" • REGIÓN"),":  refiere a la región turística en la que se encuentra el establecimiento. 
                         El país está dividido en 7 regiones: Buenos Aires, Córdoba, CABA, Cuyo, Litoral, Norte y Patagonia."),  
                             tags$p(tags$b(" • PROVINCIA"),": provincia donde se encuentra el establecimiento."),  
