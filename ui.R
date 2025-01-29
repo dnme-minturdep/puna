@@ -114,7 +114,7 @@ shinyUI(
                                                  selected = "Año", multiple = TRUE)
                               )),
                             
-                            h5("Aclaración: los datos del año 2024 son de carácter provisorio"),
+                            h5(tags$b("Aclaración: los datos del año 2024 son de carácter provisorio")),
                             br(),
                             dataTableOutput('tabla'),
                             fluidRow(downloadButton("downloadExcel","Descargar en excel"),
