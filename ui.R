@@ -6,7 +6,7 @@ shinyUI(
                              tags$a(img(src = "https://tableros.yvera.tur.ar/recursos/logo_sinta.png",
                                         width = 100),href="https://www.yvera.tur.ar/sinta/",target = '_blank'
                              )),
-                           icon("hotel"),"PUNA", id = "title", class = "navbar1"),
+                           icon("hotel"),"Alojamiento Colectivo", id = "title", class = "navbar1"),
              id="navbar",
              position = "fixed-top",
              windowTitle = "Alojamientos - Turismo Argentina", 
@@ -20,7 +20,7 @@ shinyUI(
                     div(id="container-info",
                         
                         br(),
-                        h5(tags$p("El tablero del Padrón Único Nacional de Alojamiento (PUNA) presenta datos agregados sobre la oferta de alojamiento en Argentina. En la pestaña ", tags$b("TABLERO"),
+                        h5(tags$p("El tablero de la Base de Datos de Alojamientos Colectivos en Argentina presenta datos agregados sobre la oferta de alojamiento en Argentina. En la pestaña ", tags$b("TABLERO"),
                                   "puede conocer por unidad territorial (región, provincia, etc.) y categoría de los alojamientos, indicadores de cantidad de establecimientos, plazas, unidades y habitaciones. Para más información sobre la fuente de dato diríjase a la solapa de ",tags$b("METODOLOGÍA."))),
                         br(),
                         
@@ -129,10 +129,10 @@ shinyUI(
                           
                           h3("NOTAS TÉCNICAS"),
                           br(),
-                          h4("   El Padrón Único Nacional de Alojamiento (PUNA) reúne todos los establecimientos de alojamiento turístico de la Argentina, 
+                          h4("   La base de datos de alojamiento colectivo reúne todos los establecimientos de alojamiento turístico de la Argentina, 
                 en el que se detallan las principales variables de cada uno, nutrido a partir de diferentes fuentes de información."), 
                           h4("   Estas fuentes de información son: los organismos provinciales y municipales de turismo que a través de su área de fiscalización de servicios turísticos 
-                elabora el padrón de alojamiento de su provincia o localidad; el INDEC a través de la Encuesta de Ocupación Hotelera y fuentes secundarias especializadas en turismo relevadas desde la DNMYE - MINTURDEP."),
+                elabora el padrón de alojamiento de su provincia o localidad; el INDEC a través de la Encuesta de Ocupación Hotelera y fuentes secundarias especializadas en turismo relevadas desde la Subsecretaría de Turismo."),
                           
                           h4(" Los datos publicados acá, por su propia naturaleza, se encuentran en revisión continua y deben ser tomados como provisorios."),
                           
@@ -154,7 +154,7 @@ shinyUI(
                                                              "Ley Nacional de Turismo N° 18.828"),
                                    "y las recomendaciones de la ", 
                                    tags$a(href="https://www.e-unwto.org/doi/book/10.18111/9789213612385", 
-                                          " Organización Mundial de Turismo."),
+                                          " ONU Turismo."),
                             tags$p(tags$b(" • TIPO"),": se refiere al tipo al que pertenece la categoría del establecimiento. El MINTURDEP tiene cuatro tipos: hoteleros, parahoteleros, otros colectivos y privados.")))),
                           
                           br(),

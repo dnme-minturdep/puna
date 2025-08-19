@@ -11,29 +11,30 @@ function(input, output, session) {
                       plazas = sum(plazas, na.rm = T)) %>% 
             ungroup() %>% 
             left_join(argentina, by = c("provincia"="name_iso")) %>% 
-            mutate(hexfill = colorQuantile("BuPu", n = 9,
-                                           domain = plazas)(plazas)) %>% 
+            # mutate(hexfill = colorQuantile("BuPu", n = 9,
+            #                                domain = plazas)(plazas)) %>% 
             st_as_sf()
         
         labs <- sprintf(
             paste0(data$provincia, "<br>Establecimientos: ", data$establecimientos, "<br>Plazas: ", data$plazas)
         ) %>% lapply(htmltools::HTML)
             
-
+        pal <- colorNumeric("BuPu", domain = data$plazas)
         
-        leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
+        data %>% 
+            leaflet(options = leafletOptions(zoomControl = FALSE)) %>%
             addTiles(urlTemplate = "https://wms.ign.gob.ar/geoserver/gwc/service/tms/1.0.0/mapabase_gris@EPSG%3A3857@png/{z}/{x}/{-y}.png",
                      attribution = "IGN") %>%
-            addPolygons(data = data,
-                         color = ~ hexfill,
+            addPolygons(fillColor = ~ pal(plazas),
                          label = labs,
                         labelOptions = labelOptions(
                             style = list("font-weight" = "bold"),
                             textsize = "15px",
                             direction = "auto"),
                         fillOpacity = .8, 
-                        weight = .5)
-        
+                        weight = .5)  %>% 
+            addLegend(pal = pal, values = ~plazas, title = "Plazas", labFormat = labelFormat(big.mark = "."))        
+     
     })
     
     
