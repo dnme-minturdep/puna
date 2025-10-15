@@ -1,8 +1,8 @@
-# TABLERO: PADRÓN ÚNICO NACIONAL DE ALOJAMIENTO
+# TABLERO: BASE DE DATOS DE ALOJAMIENTO COLECTIVO
 
 ## Descripción :speech_balloon:
 
-**Repositorio que contiene el código del tablero de consultas del PUNA.**
+**Repositorio que contiene el código del tablero de consultas**
 
 :globe_with_meridians: Publicado en: **https://tableros.yvera.tur.ar/puna**
 
